@@ -4,7 +4,7 @@
 https://github.com/mbs220000/ProgrammingForDigitalArtsFinal
 
 ## Description
-Inspired by the clasic 'Snake' game where a snake slithers the board using WASD tp collect fruit/ items to grow I will create something similar 
+Inspired by the clasic 'Snake' game where a snake slithers the board using WASD tp collect fruit/ items to grow I will create something similar. By Creating something inspired by an existing game it allows me to focus on programming and mechanics rather than story looks.
 
 ## Features
 - Feature 1
@@ -29,13 +29,13 @@ Minimal Viable Outcome:
 ## Milestones
 
 - Week 1
-  1. Goal 1
-  2. Goal 2
+  1. Basic art for the character and Game
+  2. Basic code/ movements
 
 - Week 2
-  1. Goal 1
-  2. Goal 2
+  1. Item can be picked up
+  2. Adding my art/ style to game
 
 - Week N (Final)
-  1. Goal 1
-  2. Goal 2
+  1. Adding colliders/ barriers at later levels
+  2. Making the character grow
