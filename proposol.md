@@ -8,11 +8,11 @@ Inspired by the clasic 'Snake' game where a snake slithers the board using WASD 
 
 ## Features
 - Feature 1
-	- Short explaination of how it will be executed.
+	- Movement Through WASD could be a set of if and elif statments.
 - Feature 2
-	- Short explaination of how it will be executed.
-- Feature N 
-	- Short explaination of how it will be executed.
+	- Collections could be if statments that del if ran into.
+- Feature 3 
+	- Another If statment could be used whn running into walls or barriers to end the game.
 
 ## Challenges
 - I will need to figure out how to program the snake 'growing' each time he gets a fruit.
