@@ -1,22 +1,27 @@
 #Import Pygame
-import random
 import pygame
 
 #Set Window Size/ Popup Screen
-def main():
-    pygame.init()
-    pygame.display.set_caption("Snake Game")
-    resolution = (800, 600)
-    screen = pygame.display.set_mode(resolution)
-    running = True
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-        black = pygame.Color(0, 0, 0)
-        screen.fill(black)
-        pygame.display.flip()
-    pygame.quit()
+pygame.init()
+screen = pygame.display.set_mode((800,800))
+clock = pygame.time.Clock()
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # fill the screen with a color to wipe away anything from last frame
+    screen.fill("grey")
+
+    # RENDER YOUR GAME HERE
+
+    # flip() the display to put your work on screen
+    pygame.display.flip()
+    clock.tick(60)  # limits FPS to 60
+pygame.quit()
+
+
 
 #class Snake():
 
