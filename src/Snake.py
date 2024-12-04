@@ -1,40 +1,57 @@
 #Import Pygame
 import pygame
+import random
+
+#Colors for Game
+Black = pygame.Color (0, 0, 0)
+White = pygame.Color (255, 255, 255)
+Red = pygame.Color (255, 0, 0)
+Green = pygame.Color (0, 255, 0)
+Blue = pygame.Color (0, 0, 255)
+Grey = pygame.Color (128,128,128)
 
 #Set Window Size/ Popup Screen
+distance_x = 500
+distance_y = 400
+
 pygame.init()
-screen = pygame.display.set_mode((800,800))
-clock = pygame.time.Clock()
+pygame.display.set_caption('Snake Game Final')
+screen = pygame.display.set_mode((distance_x, distance_y))
+clock = pygame.time.Clock() #ForFPS/ snake movement
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
-
-    # fill the screen with a color to wipe away anything from last frame
+            running = False 
     screen.fill("grey")
-
-    # RENDER YOUR GAME HERE
-
-    # flip() the display to put your work on screen
-    pygame.display.flip()
-    clock.tick(60)  # limits FPS to 60
-pygame.quit()
-
-
-
-#class Snake():
-
-    #def snakespawn():
-#class Fruit():
-    #def fruitspawn():
+    #Render Code Here?
 
 #Spawn Snake
+snake_size = 10
+snake_speed = 15
+snake_headposition = [100, 50]
 
-#Spawn Fruit/ Despawn
+# defining first 4 blocks of snake body
+snake_bodyposition = [[100, 50],
+              [90, 50],
+              [80, 50],
+              [70, 50]]
+
+
+#Spawn/ Despawn Fruit
+fruit_position = [random.randrange(1, (distance_x//10)) * 10, 
+                  random.randrange(1, (distance_y//10)) * 10]
+fruit_spawn = True
 
 #Scores?/ Gameover
 
 #Movement (Wasd)
 
 #Snake Grows
+
+
+pygame.display.flip()
+clock.tick(snake_speed) #FPS
+pygame.quit()
+quit()
+
