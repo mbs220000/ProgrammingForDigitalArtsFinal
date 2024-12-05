@@ -24,11 +24,11 @@ clock = pygame.time.Clock()
 # Spawn Snake
 snake_size = 25
 snake_speed = 15
-snake_head = [300, 200]
-snake_body = [[300, 200],
-              [290, 200],
-              [280, 200],
-              [270, 200]]
+snake_head = [400, 300]
+snake_body = [[400, 300],
+              [425, 300],
+              [450, 300],
+              [475, 300]]
 snake_direction = 'right'
 change_to = snake_direction
 
@@ -46,10 +46,24 @@ def fruit():
     pygame.draw.rect(screen, Red, [fruit_position[0], fruit_position[1], snake_size, snake_size])
 
 def game_score(score):
-    value = score_font.render("Your Score: " + str(score), True, Black)
+    value = score_font.render("Your Score:" + str(score), True, Black)
     screen.blit(value, [0, 0])
 
 score_font = pygame.font.SysFont("times new roman", 25)
+
+def game_over():
+    end_score = (snake_size - (snake_size-1))
+    endscreen = end_score_font.render("Final Score:" + str(end_score), True, Black)
+    game_end = endscreen.get_rect()
+    game_end.midtop = (distance_x/2, distance_y/4)
+    screen.blit(endscreen, game_end)
+    pygame.display.flip()
+    time.sleep(3)
+    pygame.quit()
+    quit()
+
+end_score_font = pygame.font.SysFont("times new roman", 40)
+
 
 # Main Function fo running the game
 def gameloop():
@@ -98,6 +112,7 @@ def gameloop():
             fruit_spawn = False
         else:
             snake_body.pop()
+        
 
         #Snake, Fruit, and Score on Screen spawn
         screen.fill(Grey)
@@ -105,11 +120,16 @@ def gameloop():
         fruit()
         game_score(snake_size - (snake_size-1)) #Shows Score While Playing
     
+        #Game Over
+        if snake_head[0] < 0 or snake_head[0] > distance_x-10:
+            game_over()
+        if snake_head[1] < 0 or snake_head[1] > distance_y-10:
+            game_over()
+
 
         pygame.display.update()
         clock.tick(snake_speed)  # FPS
 
-    pygame.quit()
 gameloop()
 
 
