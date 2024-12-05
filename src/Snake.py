@@ -1,27 +1,25 @@
-#Import Pygame
 import pygame
 import random
 import time
 
-#Colors for Game
-Black = pygame.Color (0, 0, 0)
-White = pygame.Color (255, 255, 255)
-Red = pygame.Color (255, 0, 0)
-Green = pygame.Color (0, 255, 0)
-Blue = pygame.Color (0, 0, 255)
-Grey = pygame.Color (128,128,128)
-
-#Set Window Size/ Popup Screen
-distance_x = 500
-distance_y = 400
-
+# Initialize Pygame
 pygame.init()
-pygame.display.set_caption('Snake Game Final')
-screen = pygame.display.set_mode((distance_x, distance_y))
-clock = pygame.time.Clock() #ForFPS/ snake movement
 
-#Spawn Snake
-snake_size = 10
+# Set up display
+distance_x, distance_y = 800, 600
+screen = pygame.display.set_mode((distance_x, distance_y))
+pygame.display.set_caption("Snake Game")
+
+# Colors
+Black = (0, 0, 0)
+Red = (255, 0, 0)
+Grey = (200, 200, 200)
+
+# Clock
+clock = pygame.time.Clock()
+
+# Spawn Snake
+snake_size = 20
 snake_speed = 15
 snake_position = [[100, 50]]
 
@@ -29,30 +27,37 @@ def snake(snake_size, snake_grow):
     for x in snake_grow:
         pygame.draw.rect(screen, Black, [x[0], x[1], snake_size, snake_size])
 
-#Spawn/ Despawn Fruit
+# Spawn/ Despawn Fruit
+fruit_position = [random.randrange(0, distance_x // snake_size) * snake_size, 
+                      random.randrange(0, distance_y // snake_size) * snake_size]
 def fruit():
-    fruit_position = [random.randrange(0, (distance_x - snake_size /10)) * 10, 
-                    random.randrange(0, (distance_y - snake_size /10)) * 10]
+    #print(f"Fruit position: {fruit_position}")  # Check the fruit's position
     pygame.draw.rect(screen, Red, [fruit_position[0], fruit_position[1], snake_size, snake_size])
 
-#Main Function
+# Main Function
 def gameloop():
+    global fruit_position
     running = True
-    time.sleep(1) # Add a delay to see if the loop starts
+    #time.sleep(5)  # Add a delay to see if the loop starts
     while running:
-        print("Game loop running") #Check if loop is running
         for event in pygame.event.get():
-            print(event)  # Check the events being processed
             if event.type == pygame.QUIT:
                 running = False 
         screen.fill(Grey)
         snake(snake_size, snake_position)
         fruit()
 
+        if snake_position[0] == fruit_position:
+            fruit_position = [random.randrange(0, int((distance_x - snake_size / 10)) * 10), 
+                              random.randrange(0, int((distance_y - snake_size / 10)) * 10)]
+
         pygame.display.update()
-        clock.tick(snake_speed) #FPS
+        clock.tick(snake_speed)  # FPS
 
     pygame.quit()
+
+# Start the game loop
+gameloop()
 
 
 
