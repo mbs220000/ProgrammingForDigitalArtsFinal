@@ -1,6 +1,7 @@
 #Import Pygame
 import pygame
 import random
+import time
 
 #Colors for Game
 Black = pygame.Color (0, 0, 0)
@@ -18,40 +19,41 @@ pygame.init()
 pygame.display.set_caption('Snake Game Final')
 screen = pygame.display.set_mode((distance_x, distance_y))
 clock = pygame.time.Clock() #ForFPS/ snake movement
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False 
-    screen.fill("grey")
-    #Render Code Here?
 
 #Spawn Snake
 snake_size = 10
 snake_speed = 15
-snake_headposition = [100, 50]
+snake_position = [[100, 50]]
 
-# defining first 4 blocks of snake body
-snake_bodyposition = [[100, 50],
-              [90, 50],
-              [80, 50],
-              [70, 50]]
-
+def snake(snake_size, snake_grow):
+    for x in snake_grow:
+        pygame.draw.rect(screen, Black, [x[0], x[1], snake_size, snake_size])
 
 #Spawn/ Despawn Fruit
-fruit_position = [random.randrange(1, (distance_x//10)) * 10, 
-                  random.randrange(1, (distance_y//10)) * 10]
-fruit_spawn = True
+def fruit():
+    fruit_position = [random.randrange(0, (distance_x - snake_size /10)) * 10, 
+                    random.randrange(0, (distance_y - snake_size /10)) * 10]
+    pygame.draw.rect(screen, Red, [fruit_position[0], fruit_position[1], snake_size, snake_size])
 
-#Scores?/ Gameover
+#Main Function
+def gameloop():
+    running = True
+    time.sleep(1) # Add a delay to see if the loop starts
+    while running:
+        print("Game loop running") #Check if loop is running
+        for event in pygame.event.get():
+            print(event)  # Check the events being processed
+            if event.type == pygame.QUIT:
+                running = False 
+        screen.fill(Grey)
+        snake(snake_size, snake_position)
+        fruit()
 
-#Movement (Wasd)
+        pygame.display.update()
+        clock.tick(snake_speed) #FPS
 
-#Snake Grows
+    pygame.quit()
 
 
-pygame.display.flip()
-clock.tick(snake_speed) #FPS
-pygame.quit()
-quit()
+
 
