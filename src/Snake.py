@@ -24,12 +24,12 @@ clock = pygame.time.Clock()
 # Spawn Snake
 snake_size = 25
 snake_speed = 15
-snake_head = [10, 5]
-snake_body = [[100, 50],
-              [90, 50],
-              [80, 50],
-              [70, 50]]
-snake_direction = 'up'
+snake_head = [300, 200]
+snake_body = [[300, 200],
+              [290, 200],
+              [280, 200],
+              [270, 200]]
+snake_direction = 'right'
 change_to = snake_direction
 
 
@@ -40,6 +40,7 @@ def snake(snake_size, snake_grow):
 # Spawn/ Despawn Fruit
 fruit_position = [random.randrange(0, distance_x // snake_size) * snake_size, 
                       random.randrange(0, distance_y // snake_size) * snake_size]
+
 def fruit():
     #print(f"Fruit position: {fruit_position}")  # Check the fruit's position
     pygame.draw.rect(screen, Red, [fruit_position[0], fruit_position[1], snake_size, snake_size])
@@ -90,7 +91,7 @@ def gameloop():
             snake_head [0] -= 10
         if snake_direction == 'right':
             snake_head [0] += 10
-        #
+        #Snake Body moves with Head
         snake_body.insert(0, list(snake_head))
         if snake_head[0] == fruit_position[0] and snake_head[1] == fruit_position[1]:
             score += 10
@@ -98,20 +99,11 @@ def gameloop():
         else:
             snake_body.pop()
 
-        fruit_spawn = True
-        if not fruit_spawn:
-            fruit_position = [random.randrange(0, distance_x // snake_size) * snake_size, 
-                            random.randrange(0, distance_y // snake_size) * snake_size]
         #Snake, Fruit, and Score on Screen spawn
         screen.fill(Grey)
         snake(snake_size, snake_body)
-       
         fruit()
         game_score(snake_size - (snake_size-1)) #Shows Score While Playing
-
-        if snake_head[0] == fruit_position:
-            fruit_position = [random.randrange(0, int((distance_x - snake_size / 10)) * 10), 
-                              random.randrange(0, int((distance_y - snake_size / 10)) * 10)]
     
 
         pygame.display.update()
