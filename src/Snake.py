@@ -27,11 +27,12 @@ clock = pygame.time.Clock()
 
 #Spawn Snake
 snake_size = 40 #must be divisible by 10? for grid
-snake_speed = 6 #FPS/ Clock
+snake_speed = 7 #FPS/ Clock
 snake_head = [400, 300]
 snake_body = [[300, 300],
               [200, 300],
-              [100, 300]]
+              [100, 300],
+              [0, 300]]
 snake_direction = 'right'
 change_to = snake_direction
 
@@ -39,7 +40,7 @@ change_to = snake_direction
 def snake(snake_size, snake_body):
     for x in reversed (snake_body):
         pygame.draw.rect(screen, PrettyBlue, [x[0], x[1], snake_size, snake_size])
-        pygame.draw.rect(screen, Green, [x[0] + 1, x[1] + 1, snake_size - 2, snake_size - 2])
+        #pygame.draw.rect(screen, Green, [x[0] + 1, x[1] + 1, snake_size - 2, snake_size - 2])
         
 #Spawn/ Despawn Fruit
 fruit_position = [random.randrange(0, (distance_x - snake_size) // 10) * 10, 
@@ -50,7 +51,7 @@ def fruit():
     pygame.draw.rect(screen, PrettyRed, [fruit_position[0], fruit_position[1], snake_size, snake_size])
 
 def game_score(score):
-    value = score_font.render("Your Score:" + str(score), True, Black)
+    value = score_font.render("Fruit Eaten:" + str(score), True, Black)
     screen.blit(value, [0, 0])
 
 score_font = pygame.font.SysFont("times new roman", 25)
@@ -121,8 +122,8 @@ def gameloop():
             score += 1
             fruit_spawn = False
                 #Add 2 segments instead of 1 when eating fruit
-            for _ in range(2):  
-                snake_body.insert(0, list(snake_head))
+            #for _ in range(2):  
+                #snake_body.insert(0, list(snake_head))
           #won't grow unless it eats fruit  
         else:
             snake_body.pop() 
