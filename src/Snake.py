@@ -31,10 +31,10 @@ PrettyBlue = pygame.Color (50, 130, 170)
 snake_size = 40 #must be divisible by 10? for grid
 snake_speed = 7 #FPS/ Clock
 snake_head = [400, 300]
-snake_body = [[300, 300],
-              [200, 300],
-              [100, 300],
-              [0, 300]]
+snake_body = [[375, 300],
+              [350, 300],
+              [325, 300],
+              [300, 300]]
 snake_direction = 'right'
 change_to = snake_direction
 
@@ -68,7 +68,7 @@ def game_over(score):
     game_end.midtop = (distance_x/2, distance_y/4)
     screen.blit(endscreen, game_end)
     pygame.display.flip() 
-    time.sleep(3)
+    time.sleep(2.5)
     pygame.quit()
     quit()
 
