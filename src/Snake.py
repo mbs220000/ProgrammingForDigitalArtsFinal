@@ -9,6 +9,8 @@ distance_x, distance_y = 800, 600
 screen = pygame.display.set_mode((distance_x, distance_y))
 pygame.display.set_caption("Snake Game")
 
+clock = pygame.time.Clock()
+
 #Basic Colors
 Black = pygame.Color (0, 0, 0)
 White = pygame.Color (255, 255, 255)
@@ -23,7 +25,7 @@ PrettyGrey = pygame.Color (140, 145, 140)
 PrettyBlue = pygame.Color (50, 130, 170)
 
 
-clock = pygame.time.Clock()
+
 
 #Spawn Snake
 snake_size = 40 #must be divisible by 10? for grid
@@ -42,6 +44,7 @@ def snake(snake_size, snake_body):
         pygame.draw.rect(screen, PrettyBlue, [x[0], x[1], snake_size, snake_size])
         #pygame.draw.rect(screen, Green, [x[0] + 1, x[1] + 1, snake_size - 2, snake_size - 2])
         
+
 #Spawn/ Despawn Fruit
 fruit_position = [random.randrange(0, (distance_x - snake_size) // 10) * 10, 
                   random.randrange(0, (distance_y - snake_size) // 10) * 10]
@@ -50,11 +53,13 @@ def fruit():
     #print(f"Fruit position: {fruit_position}")  # Check the fruit's position
     pygame.draw.rect(screen, PrettyRed, [fruit_position[0], fruit_position[1], snake_size, snake_size])
 
+
 def game_score(score):
     value = score_font.render("Fruit Eaten:" + str(score), True, Black)
     screen.blit(value, [0, 0])
 
 score_font = pygame.font.SysFont("times new roman", 25)
+
 
 def game_over(score):
     end_score = score
@@ -103,15 +108,6 @@ def gameloop():
             snake_direction = 'left'
         if change_to == 'right' and snake_direction != 'left':
             snake_direction = 'right'
-# Update the snake's head position
-        if snake_direction == 'up':
-            snake_head[1] -= snake_size
-        if snake_direction == 'down':
-            snake_head[1] += snake_size
-        if snake_direction == 'left':
-            snake_head[0] -= snake_size
-        if snake_direction == 'right':
-            snake_head[0] += snake_size
 
 
             
