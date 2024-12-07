@@ -108,7 +108,15 @@ def gameloop():
             snake_direction = 'left'
         if change_to == 'right' and snake_direction != 'left':
             snake_direction = 'right'
-
+# Update the snake's head position
+        if snake_direction == 'up':
+            snake_head[1] -= snake_size
+        if snake_direction == 'down':
+            snake_head[1] += snake_size
+        if snake_direction == 'left':
+            snake_head[0] -= snake_size
+        if snake_direction == 'right':
+            snake_head[0] += snake_size
 
             
 #Snake Body moves with Head and Snake grows
